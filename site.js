@@ -15,5 +15,5 @@ function draw(){a.firstElementChild.setAttribute('transform',`rotate(${angle})`)
 function motionLabel(){motion.textContent=paused?motion.dataset.resume:motion.dataset.pause;motion.setAttribute('aria-pressed',String(paused));}
 document.querySelectorAll('[data-teeth]').forEach(btn=>btn.addEventListener('click',()=>{teeth=Number(btn.dataset.teeth);document.querySelectorAll('[data-teeth]').forEach(x=>x.setAttribute('aria-pressed',String(x===btn)));document.querySelector('#output-teeth').textContent=teeth;document.querySelector('#output-speed').textContent=720/teeth;setup();}));motion.addEventListener('click',()=>{paused=!paused;motionLabel();});reduced.addEventListener('change',()=>{paused=reduced.matches;motionLabel();});
 new IntersectionObserver(entries=>{visible=entries[0].isIntersecting;},{threshold:.1}).observe(document.querySelector('.gear-demo'));
-function tick(t){if(last&&!paused&&visible&&!document.hidden){angle=(angle+Math.min((t-last)/1000,.05)*360)%360;draw();}last=t;requestAnimationFrame(tick);}setup();motionLabel();requestAnimationFrame(tick);
+function tick(t){if(last&&!paused&&visible&&!document.hidden){angle=(angle+Math.min((t-last)/1000,.05)*360)%2160;draw();}last=t;requestAnimationFrame(tick);}setup();motionLabel();requestAnimationFrame(tick);
 })();
